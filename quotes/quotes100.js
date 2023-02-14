@@ -10,4 +10,25 @@ const getQuote = (id) => {
   return quotes.filter((quote) => quote.id === +id);
 };
 
-module.exports = { quotes, getQuote };
+const updateQuote = (q) => {
+  const { id, text, author } = q;
+  const quoteToUpdate = getQuote(id);
+
+  quoteToUpdate.forEach((element) => {
+    if (id) {
+      element.id = id;
+    }
+
+    if (text) {
+      element.text = text;
+    }
+
+    if (author) {
+      element.author = author;
+    }
+    console.log("here", element);
+    return element;
+  });
+};
+
+module.exports = { quotes, getQuote, updateQuote };
