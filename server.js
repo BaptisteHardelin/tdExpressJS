@@ -10,7 +10,12 @@ app
   .use(morgan("combined"))
   .use(cors())
   .use(express.json())
-  .use(express.urlencoded({ extends: true }))
+  .use(express.urlencoded({ extended: true }))
   .use(routes);
+
+app.use((req, res) => {
+  res.status(404);
+  res.json({ error: "page not found" });
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
