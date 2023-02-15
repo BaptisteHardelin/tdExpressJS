@@ -26,7 +26,6 @@ const updateQuote = (q) => {
     if (author) {
       element.author = author;
     }
-    console.log("here", element);
     return element;
   });
 };
