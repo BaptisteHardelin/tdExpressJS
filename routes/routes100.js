@@ -17,7 +17,7 @@ routes.get("/:id", (req, res) => {
   res.json({ quote: getQuote(id) }).status(200);
 });
 
-routes.patch("/", (req, res) => {
+routes.patch("/quotes", (req, res) => {
   const { id, text, author } = req.body;
 
   if (id || text || author) {
