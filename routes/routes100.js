@@ -1,6 +1,6 @@
 const express = require("express");
 const routes = express.Router();
-const { getQuote, updateQuote } = require("../quotes/quotes100");
+const { getQuote, updateQuote, createQuote } = require("../quotes/quotes100");
 
 routes.get("/", (req, res) => {
   res.json("Hello, World! v 100");
@@ -25,6 +25,15 @@ routes.patch("/quotes", (req, res) => {
   }
 
   res.status(204);
+});
+
+routes.post("/", (req, res) => {
+  if (!req.body.text || !req.body.author) {
+    res.status(204);
+  }
+
+  const { text, author } = req.body;
+  res.json({ quote: createQuote({ text, author }) }).status(201);
 });
 
 module.exports = routes;

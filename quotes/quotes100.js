@@ -31,4 +31,18 @@ const updateQuote = (q) => {
   });
 };
 
-module.exports = { quotes, getQuote, updateQuote };
+const createQuote = (q) => {
+  if (!q.text || !q.author || q.text === "" || q.author === "") {
+    return null;
+  }
+  const { text, author } = q;
+  const id = quotes.length + 5;
+
+  console.log({ id, text, author });
+
+  quotes.push({ id, text, author });
+
+  return quotes;
+};
+
+module.exports = { quotes, getQuote, updateQuote, createQuote };
