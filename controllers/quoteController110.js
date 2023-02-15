@@ -43,8 +43,22 @@ const createAuthor = (req, res) => {
   return res.sendStatus(201);
 };
 
+const deleteAuthor = (req, res) => {
+  const id = req.params.id;
+  db.run("delete from author where auth_id=$id", { $id: id }, (err) => {
+    if (err) {
+      console.log("here");
+      res.sendStatus(204);
+      return console.log("deleteAuthor", err);
+    }
+  });
+
+  return res.sendStatus(200);
+};
+
 module.exports = {
   getAllAuthors,
   getSingleAuthor,
   createAuthor,
+  deleteAuthor,
 };

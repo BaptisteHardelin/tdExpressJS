@@ -4,6 +4,7 @@ const {
   getAllAuthors,
   getSingleAuthor,
   createAuthor,
+  deleteAuthor,
 } = require("../controllers/quoteController110");
 
 routes.get("/", (req, res) => {
@@ -13,5 +14,6 @@ routes.get("/", (req, res) => {
 routes.get("/authors", getAllAuthors);
 routes.get("/authors/:id", getSingleAuthor);
 routes.post("/authors", createAuthor);
+routes.delete("/authors/:id", deleteAuthor);
 
 module.exports = routes;
