@@ -1,2 +1,4 @@
 node_modules
 data/sqlite/quotes.db
+package-lock.json
+.env
