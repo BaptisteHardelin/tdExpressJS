@@ -20,15 +20,31 @@ const getAllAuthors = (req, res) => {
 
 const getSingleAuthor = (req, res) => {
   const id = req.params.id;
-  db.get("select * from author where auth_id=?", id, (err, row) => {
+  db.get("select * from author where auth_id=$id", { $id: id }, (err, row) => {
     if (err != null) {
-      res.status(204);
+      res.sendStatus(204);
     }
     res.json({ author: row }).status(200);
   });
 };
 
+const createAuthor = (req, res) => {
+  const { firstname, lastname } = req.body;
+  db.run(
+    "INSERT INTO author (auth_firstname, auth_lastname) VALUES ($firstname, $lastname)",
+    { $firstname: firstname, $lastname: lastname },
+    (err) => {
+      if (err) {
+        res.sendStatus(500);
+        return console.log("createAuthor", err);
+      }
+    }
+  );
+  return res.sendStatus(201);
+};
+
 module.exports = {
   getAllAuthors,
   getSingleAuthor,
+  createAuthor,
 };
