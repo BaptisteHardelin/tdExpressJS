@@ -38,11 +38,13 @@ const createQuote = (q) => {
   const { text, author } = q;
   const id = quotes.length + 5;
 
-  console.log({ id, text, author });
-
   quotes.push({ id, text, author });
 
   return quotes;
 };
 
-module.exports = { quotes, getQuote, updateQuote, createQuote };
+const deleteQuote = (id) => {
+  quotes = quotes.filter((quote) => quote.id !== +id);
+};
+
+module.exports = { quotes, getQuote, updateQuote, createQuote, deleteQuote };

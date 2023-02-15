@@ -1,6 +1,11 @@
 const express = require("express");
 const routes = express.Router();
-const { getQuote, updateQuote, createQuote } = require("../quotes/quotes100");
+const {
+  getQuote,
+  updateQuote,
+  createQuote,
+  deleteQuote,
+} = require("../quotes/quotes100");
 
 routes.get("/", (req, res) => {
   res.json("Hello, World! v 100");
@@ -34,6 +39,16 @@ routes.post("/", (req, res) => {
 
   const { text, author } = req.body;
   res.json({ quote: createQuote({ text, author }) }).status(201);
+});
+
+routes.delete("/:id", (req, res) => {
+  if (!req.id) {
+    res.status(204);
+  }
+
+  const id = req.params.id;
+
+  res.json({ quote: deleteQuote(id) }).status(200);
 });
 
 module.exports = routes;
